@@ -73,7 +73,9 @@ function MainMenu() {
         Popular Content
       </Typography>
       <Tabs
-        TabIndicatorProps={{ style: { display: "flex" } }}
+        TabIndicatorProps={{
+          style: { display: "flex" },
+        }}
         sx={{
           marginBottom: 3,
           padding: "10px",
@@ -86,7 +88,7 @@ function MainMenu() {
         onChange={handleTabChange}
       >
         <Tab
-          sx={{ "&.MuiTab-root:focus": { outline: "none" } }}
+          sx={{ "&.MuiTab-root:focus": { outline: "none" }, marginLeft: 'auto' }}
           label="Trending"
         />
         <Tab
@@ -119,9 +121,14 @@ function MainMenu() {
         </Grid>
       )}
       {activeTab === 1 && (
-        <>
+        <Grid
+          container
+          spacing={3}
+          className="content-grid"
+          justifyContent="center"
+        >
           <Pagination
-            sx={{ marginBottom: 1 }}
+            sx={{ margin: "15px auto 15px" }}
             color="primary"
             count={500 || 1}
             page={page}
@@ -140,13 +147,18 @@ function MainMenu() {
                 </Grid>
               ))}
           </Grid>
-        </>
+        </Grid>
       )}
       {activeTab === 2 && (
-        <>
+        <Grid
+          container
+          spacing={3}
+          className="content-grid"
+          justifyContent="center"
+        >
           <Pagination
             color="primary"
-            sx={{ marginBottom: 1 }}
+            sx={{ margin: "15px auto 15px" }}
             count={actorData?.total_pages || 1}
             page={page}
             onChange={(event, value) => setPage(value)}
@@ -162,12 +174,13 @@ function MainMenu() {
                 </Grid>
               ))}
           </Grid>
-        </>
+        </Grid>
       )}
       {activeTab === 3 && (
         <div>
           <TextField
             sx={{ marginBottom: 2 }}
+            inputProps={{ style: { color: "white" } }}
             label="Input actor name..."
             onChange={debouncedFnActors}
             variant="outlined"
@@ -190,6 +203,7 @@ function MainMenu() {
         <div>
           <TextField
             sx={{ marginBottom: 2 }}
+            inputProps={{ style: { color: "white" } }}
             label="Input film name..."
             onChange={debouncedFnMovie}
             variant="outlined"

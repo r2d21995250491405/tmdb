@@ -8,7 +8,7 @@ import {
   CardMedia,
   CardContent,
   Button,
-  CircularProgress
+  CircularProgress,
 } from "@mui/material";
 
 function ActorDetails() {
@@ -17,29 +17,29 @@ function ActorDetails() {
 
   const navigate = useNavigate();
   const goBack = () => {
-    navigate(-1); 
+    navigate(-1);
   };
 
   if (isLoading) {
-    return <CircularProgress/>;
+    return <CircularProgress />;
   }
 
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-  
+
   if (data) {
     return (
       <>
         <Button
           variant="outlined"
-          onClick={goBack} 
-          sx={{ position: "absolute", top: "10%", left: "6%" }}
+          onClick={goBack}
+          sx={{ position: "absolute", top: "2%", left: "1.7%" }}
         >
           Go Back
         </Button>
         <Container>
-          <Card sx={{ display: "flex", flexDirection: "row" }}>
+          <Card sx={{ display: "flex", flexDirection: "row", marginTop: 5 }}>
             <CardMedia
               component="img"
               alt={data.name}
@@ -50,7 +50,9 @@ function ActorDetails() {
               sx={{
                 display: "flex",
                 flexDirection: "column",
-                position: "relative",
+                gap: 2,
+                justifyContent: "center",
+                alignItems: "start",
               }}
             >
               <Typography variant="h5" gutterBottom>
