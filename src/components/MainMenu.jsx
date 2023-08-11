@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 import {
   useGetTopRatedMoviesQuery,
   useGetTrendingMoviesQuery,
@@ -56,11 +56,12 @@ function MainMenu() {
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
+    setPage(1);
   };
 
   const handleOnChangeActor = (e) => setSearchQueryActor(e.target.value);
-  const debouncedFnActors = debounce(handleOnChangeActor, 500);
   const handleOnChangeMovie = (e) => setSearchQueryMovie(e.target.value);
+  const debouncedFnActors = debounce(handleOnChangeActor, 500);
   const debouncedFnMovie = debounce(handleOnChangeMovie, 500);
 
   return (
@@ -120,7 +121,6 @@ function MainMenu() {
       {activeTab === 1 && (
         <>
           <Pagination
-            
             sx={{ marginBottom: 1 }}
             color="primary"
             count={500 || 1}
@@ -145,6 +145,7 @@ function MainMenu() {
       {activeTab === 2 && (
         <>
           <Pagination
+            color="primary"
             sx={{ marginBottom: 1 }}
             count={actorData?.total_pages || 1}
             page={page}
