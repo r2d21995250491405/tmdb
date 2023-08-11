@@ -21,6 +21,9 @@ export const moviesApi = createApi({
     getMovieDetails: builder.query({
       query: (movieId) => `movie/${movieId}?language=en-US`,
     }),
+    getTopRatedMovies: builder.query({
+      query: (page = 1) => `movie/top_rated?language=en-US&page=${page}`
+    })
   }),
 });
 
@@ -29,4 +32,5 @@ export const {
   useGetTrendingMoviesQuery,
   useSearchMoviesByNameQuery,
   useGetMovieDetailsQuery,
+  useGetTopRatedMoviesQuery
 } = moviesApi;
