@@ -48,9 +48,11 @@ function MainMenu() {
     error: searchedMovieError,
   } = useSearchMoviesByNameQuery(searchQueryMovie);
 
-  const {data: topRated,
+  const {
+    data: topRated,
     isLoading: topRatedisLoading,
-    error: topRatedError,} = useGetTopRatedMoviesQuery(page);
+    error: topRatedError,
+  } = useGetTopRatedMoviesQuery(page);
 
   const handleTabChange = (event, newValue) => {
     setActiveTab(newValue);
@@ -70,7 +72,7 @@ function MainMenu() {
         Popular Content
       </Typography>
       <Tabs
-        TabIndicatorProps={{ style: { display: 'flex' } }}
+        TabIndicatorProps={{ style: { display: "flex" } }}
         sx={{
           marginBottom: 3,
           padding: "10px",
@@ -82,11 +84,26 @@ function MainMenu() {
         value={activeTab}
         onChange={handleTabChange}
       >
-        <Tab sx={{ '&.MuiTab-root:focus': { outline: 'none' } }} label="Trending" />
-        <Tab sx={{ '&.MuiTab-root:focus': { outline: 'none' } }} label="Top Rated" />
-        <Tab sx={{ '&.MuiTab-root:focus': { outline: 'none' } }} label="Popular Actors" />
-        <Tab sx={{ '&.MuiTab-root:focus': { outline: 'none' } }} label="Search Actor" />
-        <Tab sx={{ '&.MuiTab-root:focus': { outline: 'none' } }} label="Search Movie" />
+        <Tab
+          sx={{ "&.MuiTab-root:focus": { outline: "none" } }}
+          label="Trending"
+        />
+        <Tab
+          sx={{ "&.MuiTab-root:focus": { outline: "none" } }}
+          label="Top Rated"
+        />
+        <Tab
+          sx={{ "&.MuiTab-root:focus": { outline: "none" } }}
+          label="Popular Actors"
+        />
+        <Tab
+          sx={{ "&.MuiTab-root:focus": { outline: "none" } }}
+          label="Search Actor"
+        />
+        <Tab
+          sx={{ "&.MuiTab-root:focus": { outline: "none" } }}
+          label="Search Movie"
+        />
       </Tabs>
       {activeTab === 0 && (
         <Grid container spacing={3} className="content-grid">
@@ -103,14 +120,18 @@ function MainMenu() {
       {activeTab === 1 && (
         <>
           <Pagination
+            
             sx={{ marginBottom: 1 }}
-            count={topRated?.total_pages || 1}
+            color="primary"
+            count={500 || 1}
             page={page}
-            onChange={(event, value) => setPage(value)}
+            onChange={(_, value) => setPage(value)}
             shape="rounded"
           />
           <Grid container spacing={3} className="content-grid">
-            {topRatedisLoading && <CircularProgress sx={{ margin: "0 auto" }} />}
+            {topRatedisLoading && (
+              <CircularProgress sx={{ margin: "0 auto" }} />
+            )}
             {topRatedError && <p>Error: {topRatedError.message}</p>}
             {topRated &&
               topRated.results.map((movie) => (
